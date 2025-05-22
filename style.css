@@ -1,0 +1,342 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px; /* Aumentar el ancho máximo para la nueva tabla */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+/* Navegación de pestañas */
+.nav-tabs {
+  display: flex;
+  border-bottom: 2px solid #d4af37;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.nav-tabs .nav-link {
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #d4af37;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: #fff;
+  border-bottom: 3px solid #d4af37;
+  color: #000;
+}
+
+/* Contenido de la pestaña */
+.tab-content .tab-pane {
+  display: none;
+}
+
+.tab-content .tab-pane.active {
+  display: block;
+}
+
+h5 {
+  color: #555;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Botones */
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.button-group.top-buttons {
+    margin-bottom: 20px;
+}
+
+.button-group.bottom-buttons {
+    margin-top: 20px;
+}
+
+
+.btn {
+  padding: 10px 20px;
+  border: 1px solid #d4af37;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s, color 0.3s;
+  text-align: center;
+  min-width: 150px;
+}
+
+.btn-primary {
+  background-color: #d4af37;
+  color: #fff;
+}
+
+.btn-secondary {
+  background-color: #f0f0f0;
+  color: #d4af37;
+  border-color: #d4af37;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: #fff;
+  border-color: #28a745;
+}
+
+.btn-outline-success, .btn-outline-primary {
+  background-color: transparent;
+  color: #d4af37;
+  border-color: #d4af37;
+}
+
+.btn-primary:hover,
+.btn-success:hover,
+.btn-outline-success:hover,
+.btn-outline-primary:hover {
+  background-color: #c09f2f;
+  color: #000;
+}
+
+.btn-secondary:hover {
+  background-color: #e0e0e0;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+/* Estilos para la nueva tabla de materiales */
+.table-container {
+  overflow-x: auto; /* Desplazamiento horizontal si la tabla es muy ancha */
+  -webkit-overflow-scrolling: touch; /* Suaviza el desplazamiento en iOS */
+}
+
+.material-inventory-table {
+  width: 100%; /* La tabla ocupará todo el ancho disponible */
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  table-layout: fixed; /* Mantiene los anchos de columna definidos */
+}
+
+.material-inventory-table th,
+.material-inventory-table td {
+  padding: 8px 5px; /* Reducir padding horizontal */
+  text-align: center;
+  border: 1px solid #ddd;
+  vertical-align: middle; /* Centrar verticalmente contenido */
+}
+
+.material-inventory-table thead th {
+  background-color: #d4af37;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Ancho específico para las columnas */
+.material-inventory-table thead th:nth-child(1) { /* Columna de Imagen */
+    width: 8%; /* Pequeña para la imagen */
+    min-width: 50px;
+    max-width: 80px;
+}
+
+.material-inventory-table thead th:nth-child(2) { /* Columna de Material */
+    width: 18%; /* Ajustado para dar espacio a la imagen */
+    min-width: 120px;
+    max-width: 200px;
+}
+
+.material-inventory-table thead th:not(:nth-child(1)):not(:nth-child(2)) {
+    /* Las columnas de color compartirán el ancho restante */
+    width: 14.8%; /* (100 - 8 - 18) / 5 colores = 14.8% cada una */
+    min-width: 65px; /* Ancho mínimo para las columnas de cantidad/color */
+}
+
+.material-inventory-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Estilos para celdas de encabezado de material (segunda columna del tbody) */
+.material-inventory-table tbody th { /* Aplica al nombre del material */
+    background-color: #eee;
+    text-align: left;
+    font-weight: normal;
+    position: sticky; /* Fija la primera columna */
+    left: var(--sticky-offset-material, 0); /* Usar variable CSS para el offset */
+    z-index: 2; /* Asegura que esté sobre otras celdas al hacer scroll */
+    border-right: 1px solid #ccc; /* Separador visual */
+}
+
+/* Estilos para la celda de imagen (primera columna del tbody) */
+.material-inventory-table tbody td:first-child {
+    position: sticky; /* Fija la columna de imagen */
+    left: 0;
+    z-index: 3; /* Más alto que el th del material para que se muestre encima */
+    background-color: #f9f9f9; /* Fondo de la tabla o #f2f2f2 para pares */
+    border-right: 1px solid #ccc;
+}
+
+.material-inventory-table tbody tr:nth-child(even) td:first-child {
+    background-color: #f2f2f2; /* Asegura que el fondo de la columna pegajosa coincida */
+}
+
+
+.material-inventory-table .material-icon {
+    width: 40px; /* Tamaño del icono */
+    height: 40px;
+    object-fit: contain; /* Para que la imagen se ajuste sin distorsionarse */
+    display: block; /* Para centrar con margin auto */
+    margin: 0 auto; /* Centrar la imagen en la celda */
+}
+
+/* Input en la celda */
+.material-inventory-table .qty-input {
+  width: 100%;
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 0.9rem;
+  background-color: #fff;
+}
+
+.material-inventory-table .qty-input:focus {
+  border-color: #d4af37;
+  outline: none;
+  box-shadow: 0 0 3px rgba(212, 175, 55, 0.5);
+}
+
+/* Estilos para colores de celda */
+.color-dorado { background-color: #FFD700; color: #333; }
+.color-morado { background-color: #8A2BE2; color: #fff; }
+.color-azul { background-color: #0000FF; color: #fff; }
+.color-verde { background-color: #008000; color: #fff; }
+.color-blanco { background-color: #ccc; color: #333; }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .nav-tabs .nav-link {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .material-inventory-table th,
+  .material-inventory-table td {
+    padding: 5px 3px; /* Reducir aún más el padding en móviles */
+    font-size: 0.8rem; /* Reducir tamaño de fuente en la tabla */
+  }
+
+  /* Ajustar anchos de columna para pantallas más pequeñas */
+  .material-inventory-table thead th:nth-child(1) { /* Columna de Imagen */
+      width: 12%; /* Más espacio para la imagen en móviles */
+      min-width: 45px;
+  }
+
+  .material-inventory-table thead th:nth-child(2) { /* Columna de Material */
+      width: 25%; /* Más espacio para el nombre del material */
+      min-width: 90px;
+  }
+
+  .material-inventory-table thead th:not(:nth-child(1)):not(:nth-child(2)) {
+      width: 12.6%; /* (100 - 12 - 25) / 5 colores = 12.6% */
+      min-width: 45px; /* Más pequeña para caber */
+  }
+
+  .material-inventory-table .qty-input {
+    font-size: 0.8rem; /* Reducir tamaño de fuente del input */
+    padding: 3px; /* Reducir padding del input */
+  }
+
+  /* Sticky columns adjustments */
+  .material-inventory-table tbody td:first-child { /* Imagen */
+      background-color: #f9f9f9;
+      border-right: 1px solid #ccc;
+  }
+  .material-inventory-table tbody th { /* Material Name */
+      background-color: #eee;
+      border-right: 1px solid #ccc;
+      /* Calcular el offset dinámicamente si es necesario, o un valor fijo adecuado */
+      left: var(--sticky-offset-material-mobile, 45px); /* Ancho de la primera columna */
+  }
+
+  .material-inventory-table tbody tr:nth-child(even) td:first-child {
+      background-color: #f2f2f2;
+  }
+  .material-inventory-table tbody tr:nth-child(even) th {
+      background-color: #f2f2f2;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  h5 {
+    font-size: 1.1rem;
+  }
+
+  .btn {
+    font-size: 0.85rem;
+    padding: 8px 15px;
+  }
+
+  /* Ajustes finales para pantallas muy pequeñas */
+  .material-inventory-table thead th:nth-child(1) {
+      width: 15%;
+      min-width: 40px;
+  }
+  .material-inventory-table thead th:nth-child(2) {
+      width: 30%;
+      min-width: 80px;
+  }
+  .material-inventory-table thead th:not(:nth-child(1)):not(:nth-child(2)) {
+      width: 11%; /* (100 - 15 - 30) / 5 = 11% */
+      min-width: 40px;
+  }
+  .material-inventory-table tbody th {
+      left: var(--sticky-offset-material-mobile-sm, 40px); /* Ancho de la primera columna más pequeño */
+  }
+}
