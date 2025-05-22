@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crafting DB</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <div class="nav-tabs" id="mainTabs" role="tablist">
+    <button class="nav-link active" data-tab-target="action" type="button" role="tab">¿Qué quieres hacer?</button>
+    <button class="nav-link" data-tab-target="db" type="button" role="tab">Base de datos (CSV)</button>
+  </div>
+
+  <div class="tab-content" id="mainTabsContent">
+    <div class="tab-pane active" id="action" role="tabpanel">
+      <h5>Selecciona una acción:</h5>
+      <div class="button-group">
+        <button class="btn btn-primary" id="btnCreateEquip">Crear equipo</button>
+        <button class="btn btn-secondary" id="btnCraftCheck">Revisar crafteo</button>
+      </div>
+      <p style="text-align: center; margin-top: 20px; color: #666;">
+        La funcionalidad de "Crear equipo" y "Revisar crafteo" se implementará en futuras mejoras.
+      </p>
+    </div>
+
+    <div class="tab-pane" id="db" role="tabpanel">
+      <h5>Gestión de la base de datos de materiales</h5>
+      <div class="button-group top-buttons">
+        <button class="btn btn-outline-success" id="loadCsvBtn">📁 Cargar CSV existente</button>
+        <button class="btn btn-outline-primary" id="newDbBtn">🆕 Crear base nueva</button>
+      </div>
+      <input type="file" id="csvFileInput" accept=".csv" />
+      <div id="materialTableContainer" class="table-container">
+        </div>
+      <div class="button-group bottom-buttons">
+        <button class="btn btn-primary" id="exportCsvBtn">💾 Exportar CSV</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
